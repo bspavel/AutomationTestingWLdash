@@ -1,4 +1,5 @@
 Meta:
+@loginPage
 
 Narrative:
 As an admin or user
