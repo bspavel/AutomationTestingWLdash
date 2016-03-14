@@ -11,9 +11,9 @@ public class StepMainPage extends ScenarioSteps {
 
     @Step
     public void openLoginPage(){
+        mainPage.openLoginPage();
         String expectedResult="Login";
         String actualResult=loginPage.titleWayLoginPage.getText();
-        mainPage.openLoginPage();
         assertTrue(actualResult.equals(expectedResult));
     }
 
