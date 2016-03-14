@@ -45,6 +45,12 @@ public class RegisterNewCompanyPage extends MainPage {
     @FindBy(xpath = ".//select[@id='company-state']")
     public WebElement listState;
 
+    @FindBy(xpath = ".//select[@id='Country-select']")
+    public WebElement inputCountry;
+
+    @FindBy(xpath = ".//select[@id='State-select']")
+    public WebElement inputState;
+
     @FindBy(id = "company-zip")
     public WebElement fieldZip;
 
@@ -91,8 +97,9 @@ public class RegisterNewCompanyPage extends MainPage {
     }
 
     public void selectFromCountryList(String value){
-        Select sel = new Select(listCountry);
-        sel.selectByValue(value);
+        inputCountry.clear();
+        inputCountry.sendKeys(value);
+
 
     }
 
@@ -103,8 +110,8 @@ public class RegisterNewCompanyPage extends MainPage {
     }
 
     public void selectFromState(String value){
-        Select select= new Select(listState);
-        select.selectByVisibleText(value);
+        inputState.clear();
+        inputState.sendKeys();
 
     }
     public void inputDataInFieldNewCompany(String customerID,String parentID,String companyName,String dppersonId,
