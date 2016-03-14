@@ -29,11 +29,13 @@ public class LoginPage extends MainPage {
 
 
 
+
     public void loginAs(String username, String password) {
         fieldUsername.clear();
         fieldUsername.sendKeys(username);
         fieldPassword.clear();
         fieldPassword.sendKeys(password);
         buttonLogin.click();
+
     }
 }

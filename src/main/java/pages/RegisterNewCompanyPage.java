@@ -18,7 +18,7 @@ public class RegisterNewCompanyPage extends MainPage {
     @FindBy(id = "company-companyname")
     public WebElement fieldCompanyName;
 
-    @FindBy(xpath = "//*[@id='company-customertype']/@value['RESELLER']")
+    @FindBy(xpath = ".//select[@id='company-customertype']")
     public WebElement listCustomerType;
 
     @FindBy(id = "company-dppersonid")
@@ -36,13 +36,13 @@ public class RegisterNewCompanyPage extends MainPage {
     @FindBy(xpath = "//span/span/span[1]/input")
     public WebElement searchFieldInListCountry;
 
-    @FindBy(xpath = "//*[@id='company-country']")
-    public List<WebElement> listCountry;
+    @FindBy(xpath = ".//select[@id='company-country']")
+    public WebElement listCountry;
 
     @FindBy(id = "company-address1")
     public WebElement fieldAddress;
 
-    @FindBy(xpath = "//*[@id='company-state']/@label['Brazil']")
+    @FindBy(xpath = ".//select[@id='company-state']")
     public WebElement listState;
 
     @FindBy(id = "company-zip")
@@ -66,7 +66,7 @@ public class RegisterNewCompanyPage extends MainPage {
     @FindBy(id = "company-emergencyemail")
     public WebElement fieldEmergencyEmail;
 
-    @FindBy(id = "btnsbm")
+    @FindBy(id = "btncrtcom")
     public WebElement btnCreate;
 
     @FindBy(linkText = "Cancel")
@@ -89,6 +89,24 @@ public class RegisterNewCompanyPage extends MainPage {
         select.selectByValue(label);
 
     }
+
+    public void selectFromCountryList(String value){
+        Select sel = new Select(listCountry);
+        sel.selectByValue(value);
+
+    }
+
+    public void selectFromCustomerList(String value){
+        Select select = new Select(listCustomerType);
+        select.selectByVisibleText(value);
+
+    }
+
+    public void selectFromState(String value){
+        Select select= new Select(listState);
+        select.selectByVisibleText(value);
+
+    }
     public void inputDataInFieldNewCompany(String customerID,String parentID,String companyName,String dppersonId,
                                           String notifEmail,String emergencyEmail){
         clickWebElement(fieldCustomerId);
@@ -99,16 +117,12 @@ public class RegisterNewCompanyPage extends MainPage {
         isElementPresent(fieldCompanyName);
         fieldCompanyName.clear();
         fieldCompanyName.sendKeys(companyName);
+        selectFromCustomerList("AIRCRAFT");
         isElementPresent(fieldDppersonID);
         fieldDppersonID.clear();
         fieldDppersonID.sendKeys(dppersonId);
-        btnSelectCountry.click();
-        //searchFieldInListCountry.sendKeys(country);
-      //  selectFromList(country, listCountry);
-       // searchFieldInListCountry.submit();
-       // searchFieldInListCountry.submit();
-//        isElementPresent(listCountry);
-//        selectFromList(country, listCountry);
+        selectFromCountryList("AND");
+        selectFromState("Chubut");
         fieldNotificationsEmail.clear();
         fieldNotificationsEmail.sendKeys(notifEmail);
         isElementPresent(fieldEmergencyEmail);
