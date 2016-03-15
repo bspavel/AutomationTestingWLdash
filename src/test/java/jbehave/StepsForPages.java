@@ -73,7 +73,7 @@ public class StepsForPages {
     }
     @Then ("get success $message")
     public void checkIsCreatedNewCompany(String message){
-//        stepLoginPage.checkNewCompany(message);
+        registerNewCompanyPage.confirmSuccess(message);
 
     }
 }

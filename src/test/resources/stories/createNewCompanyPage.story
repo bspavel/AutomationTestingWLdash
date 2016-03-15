@@ -13,4 +13,4 @@ When input data <customerID> and <parentID> and <companyName> and <dppersonId> a
 Then get success message
 Examples:
 |customerID|parentID|companyName|dppersonId|notifEmail|emergencyEmail|message|
-|testCustomerID|testParentID|testCompanyName|testDppersonId|testNotifEmail@com|testEmergencyEmail@com|SUCCESS SAVED DATA|
+|Oleksandr|Irina|testCompanyName|testDppersonId|testNotifEmail@yahoo.com|testEmergencyEmail@yahoo.com|Data has been saved|

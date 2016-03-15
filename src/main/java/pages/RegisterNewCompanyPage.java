@@ -1,6 +1,9 @@
 package pages;
 
 
+import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,10 +48,10 @@ public class RegisterNewCompanyPage extends MainPage {
     @FindBy(xpath = ".//select[@id='company-state']")
     public WebElement listState;
 
-    @FindBy(xpath = ".//select[@id='Country-select']")
+    @FindBy(id = "select2-Country-select-container")
     public WebElement inputCountry;
 
-    @FindBy(xpath = ".//select[@id='State-select']")
+    @FindBy(id = "select2-State-select-container")
     public WebElement inputState;
 
     @FindBy(id = "company-zip")
@@ -66,11 +69,11 @@ public class RegisterNewCompanyPage extends MainPage {
     @FindBy(id = "company-email")
     public WebElement fieldEmail;
 
-    @FindBy(id = "company-notifemail1")
-    public WebElement fieldNotificationsEmail;
+    @FindBy(xpath = ".//input[@id='company-notifemail']")
+    public WebElementFacade fieldNotificationsEmail;
 
-    @FindBy(id = "company-emergencyemail")
-    public WebElement fieldEmergencyEmail;
+    @FindBy(xpath = ".//input[@id='company-emergencyemail']")
+    public WebElementFacade fieldEmergencyEmail;
 
     @FindBy(id = "btncrtcom")
     public WebElement btnCreate;
@@ -80,6 +83,12 @@ public class RegisterNewCompanyPage extends MainPage {
 
     @FindBy(xpath = "//ul/li[3]")
     public WebElement headerCreateNewCompanyPage;
+
+    @FindBy(id = "btnsbm")
+    public WebElementFacade btnSubmit;
+
+    @FindBy(className = "alert-success alert fade in")
+    public WebElementFacade confirmationMessage;
 
     public void clickButtonCreateCompany(){
         waitFor(ExpectedConditions.visibilityOf(btnCreate));
@@ -96,9 +105,19 @@ public class RegisterNewCompanyPage extends MainPage {
 
     }
 
-    public void selectFromCountryList(String value){
-        inputCountry.clear();
-        inputCountry.sendKeys(value);
+    public void selectFromStateList(String value){
+        inputState.click();
+        inputState.sendKeys(Keys.ENTER);
+        inputState.sendKeys(Keys.ARROW_DOWN);
+        inputState.sendKeys(Keys.ENTER);
+        WebElement inputVal;
+        try {
+            inputVal = getDriver().findElement(By.xpath(".//input[@class='select2-search__field']"));
+            inputVal.sendKeys(value);
+            inputVal.sendKeys(Keys.ENTER);
+        } catch (Exception io) {
+            io.printStackTrace();
+        }
 
 
     }
@@ -109,11 +128,26 @@ public class RegisterNewCompanyPage extends MainPage {
 
     }
 
-    public void selectFromState(String value){
-        inputState.clear();
-        inputState.sendKeys();
-
+    public void selectFromCountryList(String value){
+        inputCountry.click();
+        inputCountry.sendKeys(Keys.ENTER);
+        inputCountry.sendKeys(Keys.ARROW_DOWN);
+        inputCountry.sendKeys(Keys.ENTER);
+        WebElement inputVal;
+        try {
+            inputVal = getDriver().findElement(By.xpath(".//input[@class='select2-search__field']"));
+            inputVal.sendKeys(value);
+            inputVal.sendKeys(Keys.ENTER);
+        } catch (Exception io) {
+            io.printStackTrace();
+        }
     }
+
+    public void confirmSuccess(String message){
+        String actual=confirmationMessage.getText();
+        assert(actual.equals(message));
+    }
+
     public void inputDataInFieldNewCompany(String customerID,String parentID,String companyName,String dppersonId,
                                           String notifEmail,String emergencyEmail){
         clickWebElement(fieldCustomerId);
@@ -128,13 +162,12 @@ public class RegisterNewCompanyPage extends MainPage {
         isElementPresent(fieldDppersonID);
         fieldDppersonID.clear();
         fieldDppersonID.sendKeys(dppersonId);
-        selectFromCountryList("AND");
-        selectFromState("Chubut");
-        fieldNotificationsEmail.clear();
-        fieldNotificationsEmail.sendKeys(notifEmail);
-        isElementPresent(fieldEmergencyEmail);
-        fieldEmergencyEmail.clear();
-        fieldEmergencyEmail.sendKeys(emergencyEmail);
+        selectFromCountryList("ZZZ");
+        selectFromStateList("Chubut");
+        fieldNotificationsEmail.type(notifEmail);
+        fieldEmergencyEmail.type(emergencyEmail);
+        btnSubmit.click();
+
     }
 
 }
