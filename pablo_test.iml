@@ -99,6 +99,7 @@
     <orderEntry type="library" name="Maven: javax.el:javax.el-api:2.2.4" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.web:javax.el:2.2.4" level="project" />
     <orderEntry type="library" name="Maven: com.jayway.awaitility:awaitility:1.6.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.poi:poi:3.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.serenity-bdd:serenity-jbehave:1.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: de.codecentric:jbehave-junit-runner:1.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.codehaus.groovy:groovy-all:2.3.3" level="project" />
