@@ -1,15 +1,20 @@
 package xlsExtractor;
 
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class ReadExcel {
-    public static final String PATH_FILE_ALL_TEST_DATA = ".\\testData\\allTestData.xlsx";
+    public static final String PATH_FILE_ALL_TEST_DATA = "./testData/allTestData.xlsx";
     public static String pathFileCompany = "./testData/company.xlsx";
     public static String pathFileVessel = "./testData/vessel.xlsx";
 
@@ -17,19 +22,23 @@ public class ReadExcel {
     public static void main(String[]args){
         try {
             File allTestData = new File(PATH_FILE_ALL_TEST_DATA);
-            //File testCompanyData = new File(pathFileCompany);
-            // File testVesselData = new File(pathFileVessel);
-
+            if(allTestData.exists()&&!allTestData.isDirectory()){
+                System.out.println("FILE with test data is absent");
+            }
             FileInputStream streamAllTestData = new FileInputStream(allTestData);
-            // FileInputStream streamCompanyTestData = new FileInputStream(testCompanyData);
-            // FileInputStream streamVesselTestData = new FileInputStream(testVesselData);
-
             XSSFWorkbook workbookAllData = new XSSFWorkbook(streamAllTestData);
-            // XSSFWorkbook workbookCompanyData = new XSSFWorkbook(streamCompanyTestData);
-            // XSSFWorkbook workbookVesselData = new XSSFWorkbook(streamVesselTestData);
 
             XSSFSheet sheetCompany = workbookAllData.getSheetAt(0);
-            sheetCompany.getRow(0);
+            Iterator<Row> rowIterator = sheetCompany.iterator();
+            while(rowIterator.hasNext()){
+                Row row = rowIterator.next();
+                Iterator<Cell> cellIterator = row.iterator();
+                while (cellIterator.hasNext()){
+                    Cell cell = cellIterator.next();
+                }
+            }
+
+            String a =sheetCompany.getRow(1).getCell(0).getStringCellValue();
             sheetCompany.getRow(1);
             sheetCompany.getRow(2);
             sheetCompany.getRow(3);
@@ -46,8 +55,10 @@ public class ReadExcel {
             sheetCompany.getRow(14);
             sheetCompany.getRow(15);
             sheetCompany.getRow(16);
-            System.out.println( sheetCompany.getRow(0));
+            System.out.println(a);
             XSSFSheet sheetVessel = workbookAllData.getSheetAt(1);
+            String b =sheetVessel.getRow(0).getCell(1).getStringCellValue();
+            System.out.println(b);
             sheetVessel.getRow(0);
             sheetVessel.getRow(1);
             sheetVessel.getRow(2);
