@@ -10,7 +10,7 @@ public class CompanyPage extends MainPage {
     @FindBy(id = "btncrtcom")
     public WebElement btnCreateCompany;
 
-    public void registerCompany(){
+    public void clickBtnRegisterCompany(){
         waitFor(ExpectedConditions.visibilityOf(btnCreateCompany));
         btnCreateCompany.click();
     }

@@ -9,7 +9,7 @@ Scenario: check the register vessel (short scenario)
 Given go to Main page site
 When as an user input login
 When go to Register Vessel page
-When input data in fields like: <customerID> and <parentID> and <companyName> and <dppersonId> and <notifEmail> and <emergencyEmail>
+When to enter data in fields
 Then get success message
 Examples:
 |customerID|parentID|companyName|dppersonId|notifEmail|emergencyEmail|message|

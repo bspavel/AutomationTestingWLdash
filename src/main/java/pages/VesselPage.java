@@ -8,7 +8,7 @@ public class VesselPage extends MainPage {
     @FindBy(id="btncrtves")
     public WebElement btnRegisterVessel;
 
-    public void registerVessel(){
+    public void clickBtnRegisterVessel(){
         waitFor(ExpectedConditions.visibilityOf(btnRegisterVessel));
         btnRegisterVessel.click();
     }

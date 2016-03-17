@@ -148,7 +148,7 @@ public class RegisterNewCompanyPage extends MainPage {
         assert(actual.equals(message));
     }
 
-    public void inputDataInFieldNewCompany(String customerID,String parentID,String companyName,String dppersonId,
+    public void inputDataInFieldNewCompany(String customerID,String parentID,String companyName,String dppersonId, String country,
                                           String notifEmail,String emergencyEmail){
         clickWebElement(fieldCustomerId);
         fieldCustomerId.sendKeys(customerID);
@@ -158,12 +158,12 @@ public class RegisterNewCompanyPage extends MainPage {
         isElementPresent(fieldCompanyName);
         fieldCompanyName.clear();
         fieldCompanyName.sendKeys(companyName);
-        selectFromCustomerList("AIRCRAFT");
+       // selectFromCustomerList("AIRCRAFT");
         isElementPresent(fieldDppersonID);
         fieldDppersonID.clear();
         fieldDppersonID.sendKeys(dppersonId);
-        selectFromCountryList("ZZZ");
-        selectFromStateList("Chubut");
+        selectFromCountryList(country);
+       // selectFromStateList("Chubut");
         fieldNotificationsEmail.type(notifEmail);
         fieldEmergencyEmail.type(emergencyEmail);
         btnSubmit.click();
