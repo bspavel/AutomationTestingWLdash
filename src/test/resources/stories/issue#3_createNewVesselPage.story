@@ -12,5 +12,5 @@ When go to Register Vessel page
 When to enter data in fields
 Then get success message
 Examples:
-|customerID|parentID|companyName|dppersonId|notifEmail|emergencyEmail|message|
-|Oleksandr|Irina|testCompanyName|testDppersonId|testNotifEmail@yahoo.com|testEmergencyEmail@yahoo.com|Data has been saved|
+|message|
+|Data has been saved|
