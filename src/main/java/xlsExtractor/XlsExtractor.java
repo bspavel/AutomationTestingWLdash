@@ -7,9 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-/**
- * @author Sasha on 3/16/2016.
- */
 public class XlsExtractor {
 
     public static void main(String[] args) {
