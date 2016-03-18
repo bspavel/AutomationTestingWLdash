@@ -9,8 +9,8 @@ Scenario: check the register vessel (short scenario)
 Given go to Main page site
 When as an user input login
 When go to Register Vessel page
-When to enter data in fields
+When to enter data $typePage in fields
 Then get success message
 Examples:
-|message|
-|Data has been saved|
+|message|typePage|
+|Data has been saved|vessel|

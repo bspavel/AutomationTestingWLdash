@@ -5,6 +5,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import pages.*;
+import xlsExtractor.ReadExcel;
+
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 
@@ -14,6 +16,7 @@ public class StepsForPages {
     CompanyPage companyPage;
     VesselPage vesselPage;
     RegisterNewCompanyPage registerNewCompanyPage;
+    ReadExcel readExcel;
 
     //given
     @Given("go to Main page site")
@@ -45,8 +48,7 @@ public class StepsForPages {
     @When("go to Register Company page")
     public void goToRegisterCompany() {
         mainPage.openCompanyPage();
-        companyPage.clickBtnRegisterCompany(); //тут внесла изминение
-        //registerNewCompanyPage.clickButtonCreateCompany();
+        companyPage.clickBtnRegisterCompany();
     }
 
     @When("go to Register Vessel page")
@@ -62,9 +64,16 @@ public class StepsForPages {
                 emergencyEmail);
     }
 
-    @When("to enter data in fields")
-    public void setNewCompany(){
-
+    @When("to enter data $typePage in fields")
+    public void setNewDataInFields(String typePage) throws InterruptedException {
+        switch (typePage) {
+            case "company":
+                readExcel.createExcelSheet(0);
+                break;
+            case "vessel":
+                readExcel.createExcelSheet(1);
+                break;
+        }
     }
 
     //then
@@ -79,8 +88,6 @@ public class StepsForPages {
         String actualResult = loginPage.messageEmptyPasswordOrIncorrectData.getText();
         assertTrue("incorrect comparing with:" + expectedResult1 + " ", actualResult.equals(expectedResult));
     }
-
-
 
 
     @Then("get success $message")
