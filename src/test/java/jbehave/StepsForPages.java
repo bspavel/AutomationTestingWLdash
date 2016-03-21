@@ -7,6 +7,8 @@ import org.jbehave.core.annotations.When;
 import pages.LoginPage;
 import pages.RegisterNewCompanyPage;
 
+import java.io.IOException;
+
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 
@@ -65,11 +67,9 @@ public class StepsForPages {
     }
 
 
-    @When("input data $customerID and $parentID and $companyName and $dppersonId and $notifEmail and $emergencyEmail")
-    public void setNewCompany(String customerID, String parentID, String companyName, String dppersonId,
-                              String notifEmail, String emergencyEmail) {
-        registerNewCompanyPage.inputDataInFieldNewCompany(customerID, parentID, companyName, dppersonId, notifEmail,
-                emergencyEmail);
+    @When("input data from xsl $file and check")
+    public void setNewCompany(String file) throws IOException {
+        registerNewCompanyPage.inputDataInFieldNewCompany(file);
     }
     @Then ("get success $message")
     public void checkIsCreatedNewCompany(String message){

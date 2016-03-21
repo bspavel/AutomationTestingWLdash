@@ -8,9 +8,8 @@ So that I can creat new company and see her in list company
 Scenario: check the register company (short scenario)
 Given go to Main page site
 When as an user input login
-When go to Register Company page
-When input data <customerID> and <parentID> and <companyName> and <dppersonId> and <notifEmail> and <emergencyEmail>
-Then get success message
+When input data from xsl $file and check
 Examples:
-|customerID|parentID|companyName|dppersonId|notifEmail|emergencyEmail|message|
-|Oleksandr|Irina|testCompanyName|testDppersonId|testNotifEmail@yahoo.com|testEmergencyEmail@yahoo.com|Data has been saved|
+|$file|
+|D:\RDLabEPAM\Pablo_testing_BDD\Pablo_testing_BDD\src\test\resources\testDataXLS\test.xlsx|
+|./src/test/resources/testDataXLS/test.xlsx|

@@ -1,31 +1,31 @@
 package pages;
 
 
-import org.openqa.selenium.WebElement;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends MainPage {
 
     @FindBy(id = "loginform-username")
-    public WebElement fieldUsername;
+    public WebElementFacade fieldUsername;
 
     @FindBy(id = "loginform-password")
-    public WebElement fieldPassword;
+    public WebElementFacade fieldPassword;
 
     @FindBy(name = "login-button")
-    public WebElement buttonLogin;
+    public WebElementFacade buttonLogin;
 
     @FindBy(xpath = "//*[@id='login-form']/div[2]//p")
-    public WebElement messageEmptyPasswordOrIncorrectData;
+    public WebElementFacade messageEmptyPasswordOrIncorrectData;
 
     @FindBy(xpath="//div[@class='site-login']//h1")
-    public WebElement titleWayLoginPage;
+    public WebElementFacade titleWayLoginPage;
 
 //    @FindBy(id = "loginform-rememberme")
-//    public WebElement checkBoxRememberMe;
+//    public WebElementFacade checkBoxRememberMe;
 
 //    @FindBy(xpath = "//*[@id='login-form']/div[1]//p")
-//    public WebElement messageEmptyUsernameField;
+//    public WebElementFacade messageEmptyUsernameField;
 
 
 

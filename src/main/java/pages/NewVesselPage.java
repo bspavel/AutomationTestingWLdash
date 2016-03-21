@@ -1,61 +1,61 @@
 package pages;
 
-import org.openqa.selenium.WebElement;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.support.FindBy;
 
 public class NewVesselPage extends MainPage {
     @FindBy(id = "vessel-nodeid")
-    public WebElement fieldNodeId;
+    public WebElementFacade fieldNodeId;
 
     @FindBy(id = "vessel-parentcustomerid")
-    public WebElement fieldParentCustomerId;
+    public WebElementFacade fieldParentCustomerId;
 
     @FindBy(id = "vessel-suspflag")
-    public WebElement checkboxSuspFlag;
+    public WebElementFacade checkboxSuspFlag;
 
     @FindBy(id = "vessel-vesselname")
-    public WebElement fieldVesselName;
+    public WebElementFacade fieldVesselName;
 
     @FindBy(id = "vessel-mmsi")
-    public WebElement fieldMmsi;
+    public WebElementFacade fieldMmsi;
 
     @FindBy(id="vessel-callsign")
-    public WebElement fieldCallSing;
+    public WebElementFacade fieldCallSing;
 
     @FindBy(id="vessel-vesselcountry")
-    public WebElement listVesselCountry;
+    public WebElementFacade listVesselCountry;
 
     @FindBy(id="vessel-vesseltype")
-    public WebElement listVesselType;
+    public WebElementFacade listVesselType;
 
     @FindBy(id="vessel-tonnage")
-    public WebElement fieldTonnage;
+    public WebElementFacade fieldTonnage;
 
     @FindBy(id="vessel-imo_number")
-    public WebElement fieldImoNumber;
+    public WebElementFacade fieldImoNumber;
 
     @FindBy(id="vessel-personsonboard")
-    public WebElement fieldPersonsOnBoard;
+    public WebElementFacade fieldPersonsOnBoard;
 
     @FindBy(id="vessel-aaicid")
-    public WebElement listAaicid;
+    public WebElementFacade listAaicid;
 
     @FindBy(id = "vessel-seagoingflag")
-    public WebElement listSeaGoingFlag;
+    public WebElementFacade listSeaGoingFlag;
 
     @FindBy(id="vessel-selfpropflag")
-    public WebElement listSelfProFlag;
+    public WebElementFacade listSelfProFlag;
 
     @FindBy(id="vessel-over100grtflag")
-    public WebElement listOver100QrtFlag;
+    public WebElementFacade listOver100QrtFlag;
 
     @FindBy(id="vessel-portofregistry")
-    public WebElement fieldPortoFregistry;
+    public WebElementFacade fieldPortoFregistry;
 
     @FindBy(id="vessel-yearofbuild")
-    public WebElement fieldYearOfBuild;
+    public WebElementFacade fieldYearOfBuild;
 
     @FindBy(id="'vessel-homeport")
-    public WebElement fieldHomePort;
+    public WebElementFacade fieldHomePort;
 
 }

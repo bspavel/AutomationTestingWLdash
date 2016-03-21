@@ -38,6 +38,8 @@ public class XlsExtractor {
         // get the sheet which you want to modify or create
 
         XSSFSheet sh1 = wb.getSheetAt(0);
+        sh1.getFirstHeader();
+        System.out.println(sh1.getFirstHeader().toString());
         XSSFRow row;
 
         // getRow specify which row we want to read and getCell which column

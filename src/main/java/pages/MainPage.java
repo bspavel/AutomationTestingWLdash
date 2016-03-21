@@ -1,6 +1,7 @@
 package pages;
 
 import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,16 +11,16 @@ import java.util.concurrent.TimeUnit;
 
 public class MainPage extends PageObject {
     @FindBy(linkText = "Company")
-    public WebElement linkCompany;
+    public WebElementFacade linkCompany;
 
     @FindBy(linkText = "Vessel")
-    public WebElement linkVessel;
+    public WebElementFacade linkVessel;
 
     @FindBy(linkText = "Login")
-    public WebElement linkSingIn;
+    public WebElementFacade linkSingIn;
 
     @FindBy(id="logout")
-    public WebElement linkLogOut;
+    public WebElementFacade linkLogOut;
 
     public boolean isElementPresent(WebElement webElement) {
         try {
