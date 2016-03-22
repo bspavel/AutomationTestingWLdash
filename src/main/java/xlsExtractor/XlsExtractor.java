@@ -25,7 +25,7 @@ public class XlsExtractor {
 
     {
 
-        File src = new File("D:\\RDLabEPAM\\Pablo_testing_BDD\\Pablo_testing_BDD\\src\\test\\resources\\testDataXLS\\test.xlsx");
+        File src = new File("./src/test/resources/testDataXLS/test.xlsx");
 
         // Load the file
 
