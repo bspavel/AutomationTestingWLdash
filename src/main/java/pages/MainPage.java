@@ -32,9 +32,10 @@ public class MainPage extends PageObject {
     }
 
     public void openLoginPage(){
+        getDriver().get("http://project.loc");
         getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         getDriver().manage().window().maximize();
-        getDriver().get("http://project.loc");
+
         waitFor(ExpectedConditions.visibilityOf(linkSingIn));
         linkSingIn.click();
     }
@@ -47,7 +48,6 @@ public class MainPage extends PageObject {
         linkCompany.click();
     }
     public void openVesselPage(){
-        waitFor(ExpectedConditions.visibilityOf(linkVessel));
-        linkVessel.click();
+        linkVessel.waitUntilClickable().click();
     }
 }

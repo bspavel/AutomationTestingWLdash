@@ -8,8 +8,8 @@ So that I can creat new company and see her in list company
 Scenario: check the register company (short scenario)
 Given go to Main page site
 When as an user input login
-When input data from xsl $file and check
+And input data from xsl $file and check
+Then check value on company page
 Examples:
-|$file|
-|D:\RDLabEPAM\Pablo_testing_BDD\Pablo_testing_BDD\src\test\resources\testDataXLS\test.xlsx|
+|file|
 |./src/test/resources/testDataXLS/test.xlsx|

@@ -14,9 +14,13 @@ import org.openqa.selenium.support.ui.Select;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterNewCompanyPage extends MainPage {
+
+    private List <String> companyIDs;
+
     @FindBy(xpath = "//input[@id='company-customerid']")
     public WebElementFacade fieldCustomerId;
 
@@ -153,18 +157,24 @@ public class RegisterNewCompanyPage extends MainPage {
         assert(actual.equals(message));
     }
 
-    public void inputDataInFieldNewCompany(String filePath) throws IOException {
+    public void inputDataInFieldNewCompany(String filePath) throws IOException, InterruptedException {
+        String temp = filePath;
+        temp.replace("/",File.separator);
 
 //        File src = new File(filePath);
-        FileInputStream fis = new FileInputStream(new File(filePath));
+        FileInputStream fis = new FileInputStream(new File(temp));
 
         XSSFWorkbook workbook = new XSSFWorkbook(fis); // load the workbook
         XSSFSheet schedule = workbook.getSheetAt(0);// get the sheet which you want to modify or create or read
+        List <String> arrTemp = new ArrayList<>();
 
         for(int i=1;i<=schedule.getLastRowNum();i++){
+            Thread.sleep(3000);
             openCompanyPage();
             clickButtonCreateCompany();
-            fieldCustomerId.type(schedule.getRow(i).getCell(0).getStringCellValue());
+            String companyID= schedule.getRow(i).getCell(0).getStringCellValue();
+            fieldCustomerId.type(companyID);
+            arrTemp.add(companyID);
             fieldParentId.type(schedule.getRow(i).getCell(1).getStringCellValue());
             fieldCompanyName.type(schedule.getRow(i).getCell(2).getStringCellValue());
             selectFromCustomerList(schedule.getRow(i).getCell(3).getStringCellValue());
@@ -173,9 +183,18 @@ public class RegisterNewCompanyPage extends MainPage {
             selectFromStateList(schedule.getRow(i).getCell(6).getStringCellValue());
             fieldNotificationsEmail.type(schedule.getRow(i).getCell(7).getStringCellValue());
             fieldEmergencyEmail.type(schedule.getRow(i).getCell(8).getStringCellValue());
-            btnSubmit.click();
+            btnSubmit.waitUntilClickable().click();
+            Thread.sleep(1000);
 
         }
+        setCompanyIDs(arrTemp);
     }
 
+    public List<String> getCompanyIDs() {
+        return companyIDs;
+    }
+
+    public void setCompanyIDs(List<String> companyIDs) {
+        this.companyIDs = companyIDs;
+    }
 }
