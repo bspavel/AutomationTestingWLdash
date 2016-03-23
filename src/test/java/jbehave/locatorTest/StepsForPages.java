@@ -1,4 +1,4 @@
-package jbehave;
+package jbehave.locatorTest;
 
 
 import org.jbehave.core.annotations.Given;
@@ -6,6 +6,8 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import pages.*;
 import xlsExtractor.ReadExcel;
+
+import java.io.IOException;
 
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
@@ -18,35 +20,34 @@ public class StepsForPages {
     RegisterNewCompanyPage registerNewCompanyPage;
     ReadExcel readExcel;
 
-    //given
+    //Given
     @Given("go to Main page site")
     public void openPage() {
         loginPage.openLoginPage();
     }
 
-    //when
+    //When
     @When("as an $role input login")
     public void setLoginAsUserPage(String user) throws InterruptedException {
         switch (user) {
             case "user":
-                loginPage.loginAs("tester", "qwertyuiop");
+                loginPage.loginAs("tester","qwertyuiop");
 
                 break;
             case "admin":
-                loginPage.loginAs("pavel", "qwertyuiop");
+                loginPage.loginAs("pavel","qwertyuiop");
 
                 break;
             case "validation":
-                loginPage.loginAs("", "");
+                loginPage.loginAs("","");
                 break;
             case "validation2":
-                loginPage.loginAs("123", "123");
+                loginPage.loginAs("123","123");
         }
-        // Thread.sleep(2000);
     }
 
     @When("go to Register Company page")
-    public void goToRegisterCompany() {
+    public void goToRegisterCompany(){
         mainPage.openCompanyPage();
         companyPage.clickBtnRegisterCompany();
     }
@@ -87,6 +88,24 @@ public class StepsForPages {
         String expectedResult1 = expectedResult;
         String actualResult = loginPage.messageEmptyPasswordOrIncorrectData.getText();
         assertTrue("incorrect comparing with:" + expectedResult1 + " ", actualResult.equals(expectedResult));
+    }
+
+    @When("input data from xsl $file and check")
+    public void setNewCompany(String file) throws IOException, InterruptedException {
+      //  registerNewCompanyPage.inputDataInFieldNewCompany(file);
+    }
+
+    @Then("check value on company page")
+    public void checkValueOnCompanyPage() {
+//        List<String> customersCheck = registerNewCompanyPage.getCompanyIDs();
+//        loginPage.openCompanyPage();
+//        for (String element : customersCheck) {
+//            companyPage.searchInput(element);
+//            companyPage.clickCheckbox();
+//            companyPage.submitSelected.click();
+//            String actualResult=companyPage.messageConfirmation.getText();
+//            Assert.assertThat(actualResult, CoreMatchers.containsString("Submit Ok"));
+//        }
     }
 
 
