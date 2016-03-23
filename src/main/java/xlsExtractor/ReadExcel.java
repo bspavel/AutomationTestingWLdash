@@ -30,17 +30,14 @@ public class ReadExcel {
 
             FileInputStream streamAllTestData = new FileInputStream(testDataFile);
             XSSFWorkbook wbTestData = new XSSFWorkbook(streamAllTestData);
-            switch(typePage){
-                case "company"
-                case "vessel"
-            }
+
 
             //company page
             XSSFSheet sheet = wbTestData.getSheetAt(0);
             int rowNum = sheet.getLastRowNum() + 1;
             int cellNum = sheet.getRow(0).getLastCellNum();
 
-            Iterator rows = sheetCompany.rowIterator();
+            Iterator rows = sheet.rowIterator();
             // Iterator<Row> rowIterator = sheetCompany.iterator();
             while (rows.hasNext()) {
                 XSSFRow row1 = (XSSFRow) rows.next();
@@ -70,6 +67,7 @@ public class ReadExcel {
             fne.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        }
     }
 
     public static void createExcelSheet(int typePage){
