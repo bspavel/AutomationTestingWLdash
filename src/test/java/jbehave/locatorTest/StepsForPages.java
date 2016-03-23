@@ -32,11 +32,9 @@ public class StepsForPages {
         switch (user) {
             case "user":
                 loginPage.loginAs("tester","qwertyuiop");
-
                 break;
             case "admin":
                 loginPage.loginAs("pavel","qwertyuiop");
-
                 break;
             case "validation":
                 loginPage.loginAs("","");
@@ -58,25 +56,30 @@ public class StepsForPages {
         vesselPage.clickBtnRegisterVessel();
     }
 
-    @When("input data $customerID and $parentID and $companyName and $dppersonId and $country and $notifEmail and $emergencyEmail")
-    public void setNewCompany(String customerID, String parentID, String companyName, String dppersonId, String country,
-                              String notifEmail, String emergencyEmail) {
-        registerNewCompanyPage.inputDataInFieldNewCompany(customerID, parentID, companyName, dppersonId, country, notifEmail,
-                emergencyEmail);
-    }
+//    @When("input data $customerID and $parentID and $companyName and $dppersonId and $country and $notifEmail and $emergencyEmail")
+//    public void setNewCompany(String customerID, String parentID, String companyName, String dppersonId, String country,
+//                              String notifEmail, String emergencyEmail) {
+//        registerNewCompanyPage.inputDataInFieldNewCompany(customerID, parentID, companyName, dppersonId, country, notifEmail,
+//                emergencyEmail);
+//    }
 
     @When("to enter data $typePage in fields")
     public void setNewDataInFields(String typePage) throws InterruptedException {
+        int numSheet=0;
         switch (typePage) {
             case "company":
-                readExcel.createExcelSheet(0);
+                numSheet=0;
                 break;
             case "vessel":
-                readExcel.createExcelSheet(1);
+                numSheet=1;
                 break;
         }
     }
 
+    @When("input data from xsl $file and check")
+    public void setNewCompany(String file, int numSheet) throws IOException, InterruptedException {
+        registerNewCompanyPage.inputDataInFieldNewCompany(file);
+    }
     //then
     @Then("link Logout is displayed")
     public void checkIsLogin() {
@@ -90,10 +93,7 @@ public class StepsForPages {
         assertTrue("incorrect comparing with:" + expectedResult1 + " ", actualResult.equals(expectedResult));
     }
 
-    @When("input data from xsl $file and check")
-    public void setNewCompany(String file) throws IOException, InterruptedException {
-      //  registerNewCompanyPage.inputDataInFieldNewCompany(file);
-    }
+
 
     @Then("check value on company page")
     public void checkValueOnCompanyPage() {

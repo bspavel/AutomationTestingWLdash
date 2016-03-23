@@ -2,6 +2,8 @@ package pages;
 
 
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,6 +11,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegisterNewCompanyPage extends MainPage {
@@ -148,26 +154,37 @@ public class RegisterNewCompanyPage extends MainPage {
         assert(actual.equals(message));
     }
 
-    public void inputDataInFieldNewCompany(String customerID,String parentID,String companyName,String dppersonId, String country,
-                                          String notifEmail,String emergencyEmail){
-        clickWebElement(fieldCustomerId);
-        fieldCustomerId.sendKeys(customerID);
-        isElementPresent(fieldParentId);
-        fieldParentId.clear();
-        fieldParentId.sendKeys(parentID);
-        isElementPresent(fieldCompanyName);
-        fieldCompanyName.clear();
-        fieldCompanyName.sendKeys(companyName);
-       // selectFromCustomerList("AIRCRAFT");
-        isElementPresent(fieldDppersonID);
-        fieldDppersonID.clear();
-        fieldDppersonID.sendKeys(dppersonId);
-        selectFromCountryList(country);
-       // selectFromStateList("Chubut");
-        fieldNotificationsEmail.type(notifEmail);
-        fieldEmergencyEmail.type(emergencyEmail);
-        btnSubmit.click();
+    public void inputDataInFieldNewCompany(String file, int numSheet)throws IOException, InterruptedException{
+            String temp = filePath;
+            temp.replace("/", File.separator);
 
-    }
+//        File src = new File(filePath);
+            FileInputStream fis = new FileInputStream(new File(temp));
+
+            XSSFWorkbook workbook = new XSSFWorkbook(fis); // load the workbook
+            XSSFSheet schedule = workbook.getSheetAt(0);// get the sheet which you want to modify or create or read
+            List <String> arrTemp = new ArrayList<>();
+
+            for(int i=1;i<=schedule.getLastRowNum();i++){
+                Thread.sleep(3000);
+                openCompanyPage();
+                clickButtonCreateCompany();
+                String companyID= schedule.getRow(i).getCell(0).getStringCellValue();
+                fieldCustomerId.type(companyID);
+                arrTemp.add(companyID);
+                fieldParentId.type(schedule.getRow(i).getCell(1).getStringCellValue());
+                fieldCompanyName.type(schedule.getRow(i).getCell(2).getStringCellValue());
+                selectFromCustomerList(schedule.getRow(i).getCell(3).getStringCellValue());
+                fieldDppersonID.type(schedule.getRow(i).getCell(4).getStringCellValue());
+                selectFromCountryList(schedule.getRow(i).getCell(5).getStringCellValue());
+                selectFromStateList(schedule.getRow(i).getCell(6).getStringCellValue());
+                fieldNotificationsEmail.type(schedule.getRow(i).getCell(7).getStringCellValue());
+                fieldEmergencyEmail.type(schedule.getRow(i).getCell(8).getStringCellValue());
+                btnSubmit.waitUntilClickable().click();
+                Thread.sleep(1000);
+
+            }
+            setCompanyIDs(arrTemp);
+        }
 
 }

@@ -1,5 +1,5 @@
 Meta:
-@addNewCompany
+@checkAddNewCompany
 Narrative:
 As an admin or user
 I want "create new company"
@@ -9,9 +9,10 @@ Scenario: check the register company (short scenario)
 Given go to Main page site
 When as an user input login
 When go to Register Company page
-When input data <customerID> and <parentID> and <companyName> and <dppersonId> and <country> and <notifEmail> and <emergencyEmail>
+When to enter data $typePage in fields
+And input data from xsl $file and check
 Then get success message
 Examples:
-|customerID|parentID|companyName|dppersonId|notifEmail|country|emergencyEmail|message|
-|testCustomerId|testParentID|testCompanyName|testDppersonId|ZZZ|testNotifEmail@yahoo.com|testEmergencyEmail@yahoo.
-com|Data has been saved|
+|message|typePage|file|
+|Data has been saved|company|./src/test/resources/testDataXLS/allTestData.xlsx|
+

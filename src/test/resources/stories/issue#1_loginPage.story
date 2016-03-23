@@ -1,5 +1,5 @@
 Meta:
-@loginPage
+@checkLogIn
 
 Narrative:
 As an admin or user
