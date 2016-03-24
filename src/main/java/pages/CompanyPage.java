@@ -1,6 +1,7 @@
 package pages;
 
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -24,8 +25,11 @@ public class CompanyPage extends MainPage {
     @FindBy(className = "empty")
     public WebElementFacade errorDataEmpty;
 
-    @FindBy(className = "select-on-check-all")
-    public WebElementFacade checkBoxAll;
+
+    public void checkboxElement(String val){
+        WebElementFacade temp = (WebElementFacade) getDriver().findElement(By.id("id"+val+""));
+        temp.click();
+    }
 
 
     public void searchInput(String value){

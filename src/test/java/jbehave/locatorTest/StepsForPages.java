@@ -81,7 +81,7 @@ public class StepsForPages {
         loginPage.openCompanyPage();
         for (String element : customersCheck) {
             companyPage.searchInput(element);
-            companyPage.checkBoxAll.click();
+            companyPage.checkboxElement(element);
             companyPage.submitSelected.click();
             assertTrue(companyPage.messageConfirmation.getText().equals("Submit Ok"));
         }
