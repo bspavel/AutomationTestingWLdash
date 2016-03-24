@@ -1,9 +1,11 @@
 package jbehave.locatorTest;
 
 
+import org.hamcrest.CoreMatchers;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.junit.Assert;
 import pages.CompanyPage;
 import pages.LoginPage;
 import pages.RegisterNewCompanyPage;
@@ -81,9 +83,11 @@ public class StepsForPages {
         loginPage.openCompanyPage();
         for (String element : customersCheck) {
             companyPage.searchInput(element);
-            companyPage.checkboxElement(element);
+            companyPage.clickCheckbox();
             companyPage.submitSelected.click();
-            assertTrue(companyPage.messageConfirmation.getText().equals("Submit Ok"));
+            String actualResult=companyPage.messageConfirmation.getText();
+            Assert.assertThat(actualResult, CoreMatchers.containsString("Submit Ok"));
+           // assertTrue(companyPage.messageConfirmation.getText().equals("Submit Ok"));
         }
     }
 

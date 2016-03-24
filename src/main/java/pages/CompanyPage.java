@@ -1,7 +1,6 @@
 package pages;
 
 import net.serenitybdd.core.pages.WebElementFacade;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -13,7 +12,7 @@ public class CompanyPage extends MainPage {
     @FindBy(id = "smtBtn")
     public  WebElementFacade submitSelected;
 
-    @FindBy(className = "alert-success alert fade in")
+    @FindBy(id = "w5-success-0")
     public WebElementFacade messageConfirmation;
 
     @FindBy(id = "companysearch-gsearch")
@@ -25,11 +24,8 @@ public class CompanyPage extends MainPage {
     @FindBy(className = "empty")
     public WebElementFacade errorDataEmpty;
 
-
-    public void checkboxElement(String val){
-        WebElementFacade temp = (WebElementFacade) getDriver().findElement(By.id("id"+val+""));
-        temp.click();
-    }
+    @FindBy(xpath = "//input[@name='selection_all']")
+    public WebElementFacade checkBoxAll;
 
 
     public void searchInput(String value){
@@ -37,6 +33,15 @@ public class CompanyPage extends MainPage {
         searchBtn.waitUntilClickable().click();
     }
 
+    public void clickCheckbox(){
+        if(checkBoxAll.isDisplayed()) {
+            if (!checkBoxAll.isSelected()) {
+                checkBoxAll.click();
+            }
+        }else{
+            System.out.println("element not found");
+        }
+    }
 
 
 
